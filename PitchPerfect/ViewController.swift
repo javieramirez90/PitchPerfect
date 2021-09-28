@@ -15,13 +15,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        stopRecordingButton.isEnabled = false
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        recordButton.isEnabled =  true
-        stopRecordingButton.isEnabled = false
         print("viewWillAppear")
     }
     
@@ -31,17 +30,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func recordAudio(_ sender: Any) {
+        ecordingLabel.text = "Recording in Progress"
         recordButton.isEnabled =  false
         stopRecordingButton.isEnabled = true
-        print("Record button was pressed")
-        ecordingLabel.text = "Recording in Progress"
     }
     
     @IBAction func stopRecording(_ sender: Any) {
-        print("Record button was pressed")
+        ecordingLabel.text = "Tap to Record"
         recordButton.isEnabled =  true
         stopRecordingButton.isEnabled = false
-        ecordingLabel.text = "Tap to Record"
     }
     
 }

@@ -4,12 +4,11 @@
 //
 //  Created by Xavier on 30/09/21.
 //
-
 import UIKit
 import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
-    
+    //MARK: variables and outlets
     @IBOutlet weak var snailButton: UIButton!
     @IBOutlet weak var chipmunkButton: UIButton!
     @IBOutlet weak var rabbitButton: UIButton!
@@ -27,9 +26,8 @@ class PlaySoundsViewController: UIViewController {
     enum ButtonType: Int {
         case slow = 0, fast, chipmunk, vader, echo, reverb
     }
-    
+    //MARK: playSoundForButton identifies what button was preesed and apply the proper effect.
     @IBAction func playSoundForButton(_ sender: UIButton) {
-        print("play sound button pressed")
         switch(ButtonType(rawValue: sender.tag)!) {
             case .slow:
                 playSound(rate: 0.5)
@@ -44,14 +42,13 @@ class PlaySoundsViewController: UIViewController {
             case .reverb:
                 playSound(reverb: true)
             }
-
             configureUI(.playing)
     }
     
     @IBAction func stopButtonPressed(_ sender: AnyObject) {
-        print("stop audio button pressed")
         stopAudio()
     }
+    //MARK: appState next two funtions are app state cycle override functions and prepare the audio lib and UI
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAudio()
@@ -61,6 +58,4 @@ class PlaySoundsViewController: UIViewController {
         super.viewWillAppear(animated)
         configureUI(.notPlaying)
     }
-    
-
 }
